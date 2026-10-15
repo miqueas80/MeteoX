@@ -1,0 +1,29 @@
+name: Pruebas MeteoX
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obtener código
+        uses: actions/checkout@v4
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Comprobar sintaxis
+        run: |
+          node --check src/worker.mjs
+          node --check src/normalize.mjs
+          node --check public/storage.js
+          node --check public/sw.js
+      - name: Ejecutar pruebas
+        run: npm test

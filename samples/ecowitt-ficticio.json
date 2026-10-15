@@ -1,0 +1,11 @@
+{
+  "_aviso": "RESPUESTA FICTICIA: EJEMPLO PARA PRUEBAS, NO ES UN REGISTRO REAL",
+  "code": 0,
+  "data": {
+    "outdoor": {"temperature": {"value": "24.6", "time": "1792000000"}, "humidity": {"value": "64", "time": "1792000000"}},
+    "wind": {"wind_speed": {"value": "12.7", "time": "1792000000"}, "wind_gust": {"value": "23"}, "wind_direction": {"value": "180"}},
+    "rainfall": {"daily": {"value": "4.2"}, "rain_rate": {"value": "0.4"}},
+    "pressure": {"relative": {"value": "1013.2", "time": "1792000000"}},
+    "solar_and_uvi": {"solar": {"value": "452"}, "uvi": {"value": "4.5"}}
+  }
+}
