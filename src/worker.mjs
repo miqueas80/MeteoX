@@ -78,12 +78,14 @@ export default {
       if(request.method==='GET' && url.pathname==='/api/health') {
         const state=await env.DB.prepare('SELECT * FROM station_state WHERE id=1').first();
         const latest=await env.DB.prepare('SELECT ts,source_ts FROM observations ORDER BY ts DESC LIMIT 1').first();
-        const lastTimestamp=latest?.source_ts ?? latest?.ts ?? null;
+        // Reception time is NOT evidence that the physical sensor is fresh.
+        const verifiedTimestamp=latest?.source_ts ?? null;
         return reply({configured:!!(env.ECOWITT_API_KEY&&env.ECOWITT_APPLICATION_KEY&&env.ECOWITT_MAC),
           last_poll_ts:state?.last_poll_ts??null,last_success_ts:state?.last_success_ts??null,
           last_error:state?.last_error??null,last_reading_ts:latest?.ts??null,
           last_source_ts:latest?.source_ts??null,source_age_verifiable:latest?.source_ts!=null,
-          stale:!lastTimestamp||now()-lastTimestamp>STALE_MS,now:now()});
+          sensor_time_unverified:verifiedTimestamp===null,
+          stale:verifiedTimestamp===null||now()-verifiedTimestamp>STALE_MS,now:now()});
       }
       if(request.method==='GET' && url.pathname==='/api/latest')
         return reply({reading:await env.DB.prepare('SELECT * FROM observations ORDER BY ts DESC LIMIT 1').first()});

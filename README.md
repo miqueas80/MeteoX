@@ -1,6 +1,8 @@
-# METEO X v1.3 — Plataforma rural (Meteorología + Agua)
+# METEO X v1.4 — Plataforma rural (Meteorología + Agua)
 
 **Conservamos los dos módulos independientes en un mismo sistema:** estación Ecowitt GW1201 y monitoreo de depósitos ESP32. Se mantienen el panel meteorológico y la simulación; el hardware y las credenciales reales siguen pendientes.
+
+**Novedades v1.4:** cálculo de volumen para barriles cilíndricos acostados, historial de siete días con muestreo equilibrado, y verificación conservadora de la actualidad de Ecowitt. Para actualizar la base D1 ya existente, aplicar la migración `migrations/003_tank_geometry.sql` **antes de publicar el Worker nuevo**. Más detalles: [Precisión v1.4](docs/PRECISION_V1_4.md).
 
 **Mejoras v1.3:** escritura de lecturas de agua limitada atómicamente a 30 segundos por dispositivo, renovación de credenciales ESP32 desde Agua y API, eliminación diaria de lecturas de agua con más de 180 días, indicación de total estimado cuando hay datos antiguos y botón para borrar datos guardados en ese navegador. Detalles en [docs/ROBUSTEZ_V1_3.md](docs/ROBUSTEZ_V1_3.md).
 
