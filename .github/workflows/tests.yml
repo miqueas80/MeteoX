@@ -23,6 +23,8 @@ jobs:
         run: |
           node --check src/worker.mjs
           node --check src/normalize.mjs
+          node --check src/water.mjs
+          node --check public/agua.js
           node --check public/storage.js
           node --check public/sw.js
       - name: Ejecutar pruebas
