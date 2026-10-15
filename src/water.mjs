@@ -31,10 +31,12 @@ export async function waterApi(request,env,{clock=Date.now}={}) {
   const level=levelFromDistance({...tank,distance_cm:data.distance_cm});
   if(!level)return reply({error:'Medición fuera de calibración; revisar sensor'},422);
   const at=clock();
-  const prev=await env.DB.prepare('SELECT ts FROM water_readings WHERE tank_id=? ORDER BY ts DESC LIMIT 1').bind(id).first();
-  if(prev && at-prev.ts<30000)return reply({error:'Esperar 30 segundos entre lecturas'},429);
-  await env.DB.prepare('INSERT INTO water_readings(tank_id,ts,distance_cm,percent,liters,battery_v) VALUES(?,?,?,?,?,?)')
-   .bind(id,at,data.distance_cm,level.percent,level.liters,data.battery_v??null).run();
+  // One conditional SQLite statement prevents simultaneous devices/requests bypassing cooldown.
+  const inserted=await env.DB.prepare(`INSERT INTO water_readings(tank_id,ts,distance_cm,percent,liters,battery_v)
+    SELECT ?,?,?,?,?,? WHERE NOT EXISTS (
+      SELECT 1 FROM water_readings WHERE tank_id=? AND ts>?
+    )`).bind(id,at,data.distance_cm,level.percent,level.liters,data.battery_v??null,id,at-30000).run();
+  if(inserted.meta?.changes===0)return reply({error:'Esperar 30 segundos entre lecturas'},429);
   return reply({ok:true,received_at:at,...level});
  }
  if(!admin(request,env))return reply({error:'Clave de acceso incorrecta'},401);
@@ -50,6 +52,17 @@ export async function waterApi(request,env,{clock=Date.now}={}) {
    .bind(id,data.name.trim(),data.capacity_l,data.empty_cm,data.full_cm,data.low_pct??20,await digest(token),clock()).run();
   return reply({ok:true,tank_id:id,device_token:token,notice:'Guardá este token: se muestra una sola vez.'},201);
  }
+ // An authorized administrator may replace a lost device key; the old key stops working.
+ const rotate=/^\/api\/water\/tanks\/([\w-]{10,64})\/rotate-token$/.exec(path);
+ if(rotate && request.method==='POST') {
+  const found=await env.DB.prepare('SELECT id FROM water_tanks WHERE id=?').bind(rotate[1]).first();
+  if(!found)return reply({error:'Tanque no encontrado'},404);
+  const newToken=secureToken();
+  await env.DB.prepare('UPDATE water_tanks SET token_hash=? WHERE id=?')
+    .bind(await digest(newToken),rotate[1]).run();
+  return reply({ok:true,tank_id:rotate[1],device_token:newToken,
+    notice:'La clave anterior quedó revocada. Guardá la nueva ahora.'});
+ }
  if(path==='/api/water/history' && request.method==='GET') {
   const u=new URL(request.url),tank=u.searchParams.get('tank'),n=Number(u.searchParams.get('hours'));
   if(!tank || !/^[\w-]{10,64}$/.test(tank))return reply({error:'ID de tanque inválido'},400);
@@ -58,4 +71,12 @@ export async function waterApi(request,env,{clock=Date.now}={}) {
   return reply({tank,hours,readings:(rows.results||[]).reverse()});
  }
  return reply({error:'Ruta o método no disponible'},404);
+}
+
+// Retention is independent from Ecowitt availability. Called once daily by the cron.
+export async function pruneWaterHistory(env,{clock=Date.now}={}) {
+ if(!env.DB)return {skipped:true};
+ const cutoff=clock()-180*86400000;
+ const result=await env.DB.prepare('DELETE FROM water_readings WHERE ts < ?').bind(cutoff).run();
+ return {ok:true,removed:result.meta?.changes??null,cutoff};
 }
