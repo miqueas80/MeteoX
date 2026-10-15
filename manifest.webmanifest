@@ -1,0 +1,9 @@
+{
+ "name":"METEO X — Estación del Campo",
+ "short_name":"METEO X",
+ "start_url":"./",
+ "display":"standalone",
+ "background_color":"#0a1425",
+ "theme_color":"#0a1425",
+ "icons":[{"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}
