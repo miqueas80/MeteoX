@@ -1,5 +1,6 @@
-# METEO X v1.1 — Estación meteorológica rural Ecowitt + 4G
+# METEO X v1.3 — Plataforma rural (Meteorología + Agua)
 
+**Conservamos los dos módulos independientes en un mismo sistema:** estación Ecowitt GW1201 y monitoreo de depósitos ESP32. Se mantienen el panel meteorológico y la simulación; el hardware y las credenciales reales siguen pendientes.\n\n**Mejoras v1.3:** escritura de lecturas de agua limitada atómicamente a 30 segundos por dispositivo, renovación de credenciales ESP32 desde Agua y API, eliminación diaria de lecturas de agua con más de 180 días, indicación de total estimado cuando hay datos antiguos y botón para borrar datos guardados en ese navegador. Detalles en [docs/ROBUSTEZ_V1_3.md](docs/ROBUSTEZ_V1_3.md).\n\n
 METEO X es una **PWA propia** para visualizar mediciones del kit **Ecowitt GW1201 (WS69 + GW1200)** en un campo que dispone de router 4G LTE. Es una entrega de código lista para *pruebas y despliegue*, **no una estación física ya conectada**.
 
 ## Repositorio GitHub
