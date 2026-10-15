@@ -1,5 +1,5 @@
 import {normalizeEcowitt,createEcowittUrl} from './normalize.mjs';
-import {waterApi} from './water.mjs';
+import {waterApi,pruneWaterHistory} from './water.mjs';
 const COLUMNS=['ts','temp_c','humidity_pct','wind_kmh','gust_kmh','wind_dir_deg','rain_daily_mm','rain_rate_mmh','pressure_hpa','solar_wm2','uv_index','indoor_c','indoor_humidity_pct','source_ts'];
 const HEADERS={'content-type':'application/json; charset=utf-8','cache-control':'no-store','x-content-type-options':'nosniff','referrer-policy':'no-referrer'};
 const json=(x,status=200)=>new Response(JSON.stringify(x),{status,headers:HEADERS});
@@ -102,6 +102,12 @@ export default {
     }catch(e){return reply({error:'Error interno del servicio'},500);}
   },
   async scheduled(controller,env,ctx){
+    // The water retention task is deliberately independent from Ecowitt polling.
+    const at=new Date(controller?.scheduledTime??Date.now());
+    if(at.getUTCHours()===0 && at.getUTCMinutes()<5){
+      ctx.waitUntil(pruneWaterHistory(env,{clock:()=>at.getTime()})
+        .catch(()=>console.error('Error de mantenimiento de historial de agua')));
+    }
     ctx.waitUntil(collect(env).catch(()=>console.error('Error interno durante recolección Ecowitt')));
   }
 };

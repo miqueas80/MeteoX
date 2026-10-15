@@ -22,7 +22,7 @@ render()}
 function el(tag,cls,text){const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e}
 function render(){const latest=tanks.length?Math.max(...tanks.map(t=>t.ts||0)):0;
 $('status').textContent=mode==='real'?'ESP32 real · '+tanks.length+' depósitos':'Simulador · '+tanks.length+' depósitos';
-$('add').disabled=mode!=='real';$('total').textContent=num(tanks.reduce((s,t)=>s+(t.liters||0),0))+' L';$('count').textContent=String(tanks.length);
+$('add').disabled=mode!=='real';$('rotateKey').hidden=mode!=='real'||!selected;$('totalLabel').textContent=mode==='real'?(tanks.some(t=>!t.ts||clock()-t.ts>900000)?'Último total estimado · incluye datos antiguos':'Último total estimado · mediciones recientes'):'Agua estimada (simulación)';$('total').textContent=num(tanks.reduce((s,t)=>s+(t.liters||0),0))+' L';$('count').textContent=String(tanks.length);
 $('alerts').textContent=String(tanks.filter(t=>(t.percent!==null&&t.percent!==undefined&&t.percent<(t.low_pct??limit))||(mode==='real'&&(!t.ts||clock()-t.ts>900000))).length);
 $('updated').textContent=date(latest);
 $('tanks').replaceChildren();if(!tanks.length)$('tanks').append(el('div','panel','Todavía no hay depósitos registrados. Agregá un tanque para comenzar.'));
@@ -42,6 +42,22 @@ $('export').addEventListener('click',()=>{const t=tanks.find(t=>t.id===selected)
 $('add').addEventListener('click',()=>{if(mode==='real'){$('tankMessage').textContent='';$('newTank').showModal()}});
 $('cancelTank').addEventListener('click',()=>$('newTank').close());
 $('tankForm').addEventListener('submit',async e=>{e.preventDefault();const data={name:$('tankName').value.trim(),capacity_l:Number($('capacity').value),empty_cm:Number($('empty').value),full_cm:Number($('full').value),low_pct:Number($('low').value)};if(data.empty_cm-data.full_cm<5){$('tankMessage').textContent='La distancia del tanque vacío debe superar la del lleno por 5 cm.';return}try{const res=await api('/api/water/tanks',{method:'POST',body:JSON.stringify(data)});$('newTank').close();$('tankId').textContent=res.tank_id;$('deviceToken').textContent=res.device_token;$('credentials').showModal();await refresh()}catch(err){$('tankMessage').textContent=err.message}});
-$('closeCredentials').addEventListener('click',()=>$('credentials').close());window.addEventListener('resize',draw);setInterval(refresh,300000);refresh();
+$('rotateKey').addEventListener('click',async()=>{
+  const tank=tanks.find(t=>t.id===selected);if(mode!=='real'||!tank)return;
+  if(!confirm('¿Renovar la clave de '+tank.name+'? La clave anterior dejará de funcionar inmediatamente hasta que actualices la ESP32.'))return;
+  try{
+    const r=await api('/api/water/tanks/'+encodeURIComponent(tank.id)+'/rotate-token',{method:'POST',body:'{}'});
+    $('tankId').textContent=r.tank_id;$('deviceToken').textContent=r.device_token;
+    $('credentials').showModal();
+    notice('Clave renovada. Reprogramá el token del dispositivo para recibir nuevas lecturas.','real');
+  }catch(e){notice('No se pudo renovar la clave: '+e.message,'error')}
+ });
+ $('forgetCache').addEventListener('click',()=>{
+  if(!confirm('¿Borrar las lecturas guardadas en este navegador? No se borra ningún registro del servidor.'))return;
+  try{localStorage.removeItem('meteox-water-cache')}catch{}
+  notice('Se borraron las lecturas guardadas de este navegador.','real');
+  if(mode==='real'){tanks=[];selected='';history=[];render()}
+ });
+ $('closeCredentials').addEventListener('click',()=>$('credentials').close());window.addEventListener('resize',draw);setInterval(refresh,300000);refresh();
 if('serviceWorker' in navigator && location.protocol==='https:')navigator.serviceWorker.register('./sw.js').catch(()=>{});
 })();
