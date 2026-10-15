@@ -1,6 +1,6 @@
 {
   "name": "meteo-x",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "private": true,
   "type": "module",
   "description": "MeteoX: Ecowitt y seguimiento de agua ESP32 por 4G",
