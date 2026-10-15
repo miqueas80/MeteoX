@@ -1,9 +1,9 @@
 {
   "name": "meteo-x",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": true,
   "type": "module",
-  "description": "Estación meteorológica remota Ecowitt GW1201 + 4G",
+  "description": "MeteoX: Ecowitt y seguimiento de agua ESP32 por 4G",
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
