@@ -27,5 +27,7 @@ jobs:
           node --check public/agua.js
           node --check public/storage.js
           node --check public/sw.js
+          node --check public/agua.js
+          node --check agua.js
       - name: Ejecutar pruebas
         run: npm test
