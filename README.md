@@ -6,7 +6,7 @@ METEO X es una **PWA propia** para visualizar mediciones del kit **Ecowitt GW120
 
 Proyecto independiente **MeteoX** (sin copiar material escolar ni código de NEXUS-X). La rama `main` ejecuta 12 pruebas automáticas mediante GitHub Actions en cada cambio. La aplicación **no queda publicada automáticamente** por subir el código: el Worker, la base D1 y las claves privadas requieren la configuración descrita en este README.
 
-Para crear el repositorio, hacerlo desde la cuenta `miqueas80`, con nombre `MeteoX`, visibilidad **Private** y activar **Add a README file**. Después de crearlo, la aplicación conectada de GitHub puede cargar los archivos de esta carpeta y sustituir el README inicial.
+Repositorio creado en `miqueas80/MeteoX` y código v1.1 cargado en `main`. Actualmente el repositorio es **público**: no se incluyen claves privadas. Para cambiar su visibilidad, hacerlo desde **Settings → General → Danger Zone → Change repository visibility**. El despliegue de Cloudflare y las credenciales de Ecowitt todavía requieren configuración.
 
 ## Qué funciona y qué falta
 
