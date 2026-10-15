@@ -13,4 +13,4 @@ crons = ["*/5 * * * *"]
 [[d1_databases]]
 binding = "DB"
 database_name = "meteo-x-db"
-database_id = "REEMPLAZAR_POR_ID_REAL_DE_D1"
+database_id = "49428b5a-ba52-4f90-a3af-52f54f19c431"
