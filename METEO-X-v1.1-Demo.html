@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b1827">
+  <meta name="description" content="METEO X: estación meteorológica rural Ecowitt con monitoreo remoto, historial y alertas.">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <title>METEO X · Estación del Campo</title>
+<style>
+:root{color-scheme:dark;--bg:#091524;--surface:#10253a;--surface2:#152e43;--line:#284357;--ink:#e8f3f6;--muted:#95b1bd;--aqua:#64decf;--blue:#7cb5f9;--amber:#ffc278;--red:#ff8f99;--green:#80dfb6;--shadow:0 24px 80px #01071066}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% -15%,#183e4a 0%,transparent 43%),var(--bg);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.4}button,input,select{font:inherit}button{cursor:pointer}.shell{max-width:1180px;margin:0 auto;padding:26px 24px 70px}.top{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-bottom:26px;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:12px}.brandmark{width:50px;height:50px;border-radius:17px;background:linear-gradient(145deg,#79dcd2,#429fa3);display:grid;place-items:center;color:#0b2230;font-size:28px;box-shadow:0 8px 25px #64decd30}.brand h1{font-size:22px;letter-spacing:2px;margin:0;font-weight:850}.brand small{font-size:11px;color:var(--muted);letter-spacing:2px;display:block}.topright{display:flex;align-items:center;gap:10px}.pill{border:1px solid var(--line);background:#152838b9;border-radius:999px;padding:9px 13px;color:var(--muted);font-size:12px;display:inline-flex;align-items:center;gap:7px}.dot{height:8px;width:8px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 3px #ffc27824}.dot.good{background:var(--green)}.dot.bad{background:var(--red)}.btn{border:1px solid var(--line);background:var(--surface2);color:var(--ink);border-radius:12px;padding:11px 15px;font-weight:650}.btn:hover{border-color:var(--aqua)}.btn.primary{background:var(--aqua);color:#09232c;border-color:transparent}.btn.ghost{background:transparent}.btn:disabled{opacity:.5;cursor:not-allowed}.hero{display:grid;grid-template-columns:1.4fr 1fr;gap:26px;padding:43px 0 27px}.eyebrow{font-size:12px;text-transform:uppercase;color:var(--aqua);letter-spacing:2.2px;font-weight:750}.hero h2{font-size:clamp(32px,5vw,56px);letter-spacing:-2px;line-height:1.06;margin:13px 0 16px}.hero h2 em{color:var(--aqua);font-style:normal}.subtitle{max-width:540px;color:var(--muted);font-size:15px;margin:0 0 24px}.heroactions{display:flex;gap:10px;flex-wrap:wrap}.scene{min-height:210px;border:1px solid var(--line);border-radius:22px;position:relative;overflow:hidden;background:linear-gradient(145deg,#173c4a 0%,#18415b 45%,#153348 100%);display:grid;place-items:center}.scene:before{content:"";position:absolute;width:210px;height:210px;top:-75px;right:-25px;border-radius:50%;background:#ffe1a769;filter:blur(7px)}.scene .big{font-size:83px;filter:drop-shadow(0 16px 22px #09233790);z-index:1}.land{position:absolute;bottom:-55px;height:140px;width:130%;background:linear-gradient(140deg,#2e7969,#1b4e57);border-radius:50%;left:-15%}.scene .caption{position:absolute;bottom:16px;right:18px;font-size:12px;color:#d8e9e9;z-index:2;background:#102333bb;border-radius:12px;padding:8px 11px}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.tile,.panel{border:1px solid var(--line);border-radius:18px;background:linear-gradient(160deg,var(--surface),#102336);box-shadow:0 8px 30px #00000012}.tile{padding:21px;min-height:162px;position:relative}.tile-head{display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--muted);font-size:12px}.tile-head .symbol{font-size:24px}.tile strong{display:block;font-size:clamp(24px,3.2vw,36px);font-weight:760;letter-spacing:-1.2px;margin:13px 0 3px}.tile .unit{font-size:13px;color:var(--muted);font-weight:550;letter-spacing:0}.tile .foot{color:var(--muted);font-size:12px}.sectiontop{margin:28px 0 13px;display:flex;justify-content:space-between;align-items:center;gap:12px}.sectiontop h3{margin:0;font-size:19px;letter-spacing:-.4px}.seg{display:flex;align-items:center;gap:4px;background:#122c40;border:1px solid var(--line);border-radius:13px;padding:4px}.seg button{border:0;color:var(--muted);border-radius:9px;padding:9px 13px;font-size:12px;background:transparent}.seg button.active{background:#2c5667;color:#eafff9}.columns{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(285px,.9fr);gap:14px}.panel{padding:22px}.panel-header{display:flex;align-items:center;justify-content:space-between;gap:15px}.panel-header h4{margin:0;font-size:15px}.panel .description{font-size:12px;color:var(--muted);margin:7px 0 18px}.chart{width:100%;height:280px;display:block}.metric-tabs{display:flex;gap:7px;flex-wrap:wrap}.metric-tabs button{font-size:12px;padding:7px 10px;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:9px}.metric-tabs button.active{background:#26505b;color:var(--aqua);border-color:#3c7e82}.statusline{display:flex;align-items:center;gap:9px;font-size:13px;margin:14px 0}.statusline .circle{width:9px;height:9px;border-radius:50%;background:var(--aqua);flex:none}.statusline small{color:var(--muted)}.alert{padding:12px 13px;border:1px solid #736044;border-radius:12px;background:#48392a55;color:#ffcc8b;font-size:13px;margin:9px 0}.alert.critical{border-color:#824955;background:#4e253150;color:#ffaab1}.alert.ok{border-color:#2d6c65;background:#173a3750;color:#9af5d3}.info{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}.info div{padding:12px 13px;background:#091c2f;border-radius:12px}.info label{font-size:11px;color:var(--muted);display:block}.info span{display:block;margin-top:5px;font-size:13px}.rows{width:100%;border-collapse:collapse;font-size:13px;text-align:left}.rows th{color:var(--muted);font-weight:500;font-size:11px;padding:11px 10px;border-bottom:1px solid var(--line)}.rows td{padding:11px 10px;border-bottom:1px solid #233d4c}.rows tr:last-child td{border:0}.tablewrap{overflow-x:auto}.rows th,.rows td{white-space:nowrap}.tableActions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.dialog{display:none;position:fixed;inset:0;z-index:30;align-items:center;justify-content:center;background:#000b;backdrop-filter:blur(7px);padding:16px}.dialog.show{display:flex}.modal{background:#112639;border:1px solid #3a5c69;border-radius:21px;max-width:510px;width:100%;padding:27px;box-shadow:var(--shadow);max-height:90vh;overflow-y:auto}.modal h3{margin:0 0 8px;font-size:22px}.modal p{font-size:13px;color:var(--muted);margin:0 0 20px}.field{margin-bottom:15px}.field label{display:block;font-size:13px;font-weight:650;margin-bottom:7px}.field input,.field select{width:100%;background:#091c2f;color:var(--ink);border:1px solid #3d5d6d;border-radius:10px;padding:12px;outline:none}.field input:focus{border-color:var(--aqua)}.hint{font-size:12px;color:var(--muted);margin-top:6px}.modalactions{display:flex;justify-content:flex-end;gap:8px;margin-top:20px}.footer{border-top:1px solid var(--line);padding:20px 0 0;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-top:30px}.hide{display:none!important}.tooltip{position:absolute;pointer-events:none;z-index:10;background:#071827ef;border:1px solid var(--line);padding:7px;border-radius:8px;font-size:12px;display:none}.notice{margin:0 0 18px;font-size:12px;background:#152b3d;border:1px solid var(--line);padding:10px 12px;border-radius:10px;color:var(--muted)}.notice strong{color:var(--amber)}
+@media(max-width:920px){.hero{grid-template-columns:1fr}.scene{min-height:165px}.grid{grid-template-columns:repeat(2,1fr)}.columns{grid-template-columns:1fr}.hero{padding-top:25px}}
+@media(max-width:580px){.shell{padding:18px 15px 65px}.brand h1{font-size:18px}.brandmark{width:43px;height:43px}.top{gap:10px}.topright .pill{font-size:10px;padding:7px 9px}.topright .btn{padding:8px;font-size:11px}.hero h2{font-size:39px}.scene{display:none}.grid{gap:9px}.tile{padding:15px;min-height:144px}.tile strong{font-size:27px}.panel{padding:15px}.chart{height:225px}.sectiontop{align-items:flex-start;flex-direction:column}.info{grid-template-columns:1fr 1fr}.top .pill#network{display:none}}
+
+.notice.status{border-color:#366177;color:#bed5dc;margin-top:-7px} .notice.status.good{border-color:#2e7164;color:#a7e9d8}.notice.status.bad{border-color:#a45f5f;color:#ffbdc0}.notice.status.warn{border-color:#907043;color:#ffe1b0}.notice.status strong{color:inherit} .cachemeta{font-size:11px;color:var(--muted);margin-top:7px}.btn.mini{font-size:12px;padding:8px 10px}
+</style>
+</head>
+<body>
+<div class="shell">
+ <header class="top">
+  <div class="brand"><div class="brandmark" aria-hidden="true">☁</div><div><h1>METEO X</h1><small>ESTACIÓN DEL CAMPO</small></div></div>
+  <div class="topright"><span class="pill" id="network"><span class="dot" id="internetDot"></span><span id="internetText">Comprobando red</span></span><span class="pill"><span class="dot" id="modeDot"></span><span id="modeText">Modo demo</span></span><button class="btn" id="settingsBtn" aria-label="Configuración">⚙ Ajustes</button></div>
+ </header>
+ <main>
+ <section class="hero">
+  <div><div class="eyebrow">MONITOREO RURAL · ECOWITT GW1201</div><h2>El clima de tu campo,<br><em>en tus manos.</em></h2><p class="subtitle">Mediciones meteorológicas, historial y alertas desde cualquier lugar. Tu propia plataforma, preparada para conexión 4G.</p><div class="heroactions"><button class="btn primary" id="refreshBtn">↻ Actualizar datos</button><button class="btn ghost" id="connectBtn">☁ Conectar estación</button></div></div>
+  <div class="scene" aria-hidden="true"><div class="big">🌦️</div><div class="land"></div><div class="caption">WS69 → GW1200 → 4G → METEO X</div></div>
+ </section>
+ <div class="notice" id="demoNotice"><strong>SIMULACIÓN ACTIVADA.</strong> Estos valores son de demostración, no mediciones reales del campo. Podés explorar el panel sin tener la estación.</div>
+ <div class="notice status" id="sourceNotice" role="status" aria-live="polite" hidden></div>
+ <section aria-label="Mediciones actuales" class="grid" id="tiles">
+  <article class="tile"><div class="tile-head">Temperatura <span class="symbol">🌡️</span></div><strong id="temp">--</strong><div class="foot">Aire exterior</div></article>
+  <article class="tile"><div class="tile-head">Humedad relativa <span class="symbol">💧</span></div><strong id="humidity">--</strong><div class="foot">Ambiente exterior</div></article>
+  <article class="tile"><div class="tile-head">Viento <span class="symbol">🌬️</span></div><strong id="wind">--</strong><div class="foot" id="windDetail">Ráfaga máxima —</div></article>
+  <article class="tile"><div class="tile-head">Lluvia acumulada hoy <span class="symbol">🌧️</span></div><strong id="rain">--</strong><div class="foot" id="rainDetail">Intensidad —</div></article>
+  <article class="tile"><div class="tile-head">Presión atmosférica <span class="symbol">🧭</span></div><strong id="pressure">--</strong><div class="foot">Presión relativa · hPa</div></article>
+  <article class="tile"><div class="tile-head">Radiación solar <span class="symbol">☀️</span></div><strong id="solar">--</strong><div class="foot">Irradiancia</div></article>
+  <article class="tile"><div class="tile-head">Índice UV <span class="symbol">🔆</span></div><strong id="uv">--</strong><div class="foot">Escala de radiación UV</div></article>
+  <article class="tile"><div class="tile-head">Dirección del viento <span class="symbol">🧭</span></div><strong id="direction">--</strong><div class="foot">Orientación del viento</div></article>
+ </section>
+ <div class="sectiontop"><h3>Evolución meteorológica</h3><div class="seg" aria-label="Período de historial" id="periods"><button data-hours="6">6 h</button><button data-hours="24" class="active">24 h</button><button data-hours="168">7 días</button></div></div>
+ <div class="columns">
+  <section class="panel"><div class="panel-header"><h4>Historial de mediciones</h4><div class="metric-tabs" id="metrics"><button data-key="temp_c" class="active">Temperatura</button><button data-key="humidity_pct">Humedad</button><button data-key="wind_kmh">Viento</button><button data-key="rain_daily_mm">Lluvia</button></div></div><p class="description">Registro periódico de lecturas. Tocá otra variable para cambiar el gráfico.</p><canvas class="chart" id="chart" role="img" aria-label="Gráfico histórico de las mediciones"></canvas><div class="statusline"><span class="circle"></span><span id="chartSummary">Preparando historial</span></div></section>
+  <aside class="panel"><div class="panel-header"><h4>Estado y alertas</h4><span class="pill" id="lastUpdate">Sin datos</span></div><p class="description">Alertas informativas basadas en umbrales editables. No son alertas oficiales de emergencias.</p><div id="alerts" aria-live="polite"></div><div class="info"><div><label>Estación</label><span>Ecowitt GW1201</span></div><div><label>Canal remoto</label><span>4G LTE / Wi-Fi</span></div><div><label>Origen de datos</label><span id="origin">Simulador</span></div><div><label>Última lectura recibida</label><span id="updated">--</span></div><div><label>Hora del sensor</label><span id="sensorTime">—</span></div><div><label>Último contacto con servidor</label><span id="lastPoll">—</span></div></div></aside>
+ </div>
+ <div class="sectiontop"><h3>Registros recientes</h3><div class="tableActions"><button class="btn" id="exportBtn">↓ Exportar CSV</button><button class="btn" id="settingsBtn2">⚙ Umbrales</button></div></div>
+ <div class="panel tablewrap"><table class="rows"><thead><tr><th>Fecha y hora</th><th>Temp. °C</th><th>Humedad</th><th>Viento km/h</th><th>Lluvia mm</th><th>Presión hPa</th></tr></thead><tbody id="records"><tr><td colspan="6">Cargando…</td></tr></tbody></table></div>
+ </main>
+ <footer class="footer"><span>METEO X v1.1 · Proyecto meteorológico rural · Desarrollo propio</span><span id="footStatus">Panel en modo simulación</span></footer>
+</div>
+<div class="dialog" id="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle">
+ <div class="modal"><h3 id="dialogTitle">Configurar METEO X</h3><p>Podés usar la simulación sin Internet. Para ver lecturas reales necesitás desplegar el servidor e ingresar la clave privada.</p>
+ <div class="field"><label for="mode">Origen de las mediciones</label><select id="mode"><option value="demo">Simulación de prueba</option><option value="real">Estación Ecowitt real</option></select></div>
+ <div id="realSettings"><div class="field"><label for="token">Clave privada del panel</label><input id="token" type="password" autocomplete="off" placeholder="ADMIN_TOKEN configurado en Cloudflare"><div class="hint">La clave se conserva solamente durante esta sesión y no se incluye en la URL.</div></div></div>
+ <div class="field"><label for="tempLimit">Avisar si temperatura supera (°C)</label><input id="tempLimit" type="number" step="1" min="0" max="80"></div>
+ <div class="field"><label for="windLimit">Avisar si viento supera (km/h)</label><input id="windLimit" type="number" step="1" min="1" max="200"></div>
+ <div class="field"><label for="rainLimit">Avisar si intensidad de lluvia supera (mm/h)</label><input id="rainLimit" type="number" step="1" min="1" max="200"></div>
+ <div class="cachemeta">Las últimas mediciones reales se guardan en este dispositivo (sin claves de acceso). En un celular compartido podés borrarlas.</div><button type="button" class="btn ghost mini" id="clearCacheBtn">Borrar historial local de este dispositivo</button>
+ <div class="modalactions"><button id="cancelBtn" class="btn ghost">Cancelar</button><button id="saveBtn" class="btn primary">Guardar ajustes</button></div></div>
+</div>
+<script>
+// Local copy of recent real weather observations. Never stores API credentials.
+// Kept separate from Service Worker: API requests always require online auth.
+(() => {
+  'use strict';
+  const NAME='meteox-real-readings', STORE='snapshots';
+  function open(){
+    return new Promise((resolve,reject)=>{
+      if(!('indexedDB' in window)) return reject(new Error('IndexedDB no disponible'));
+      const req=indexedDB.open(NAME,1);
+      req.onupgradeneeded=()=>{if(!req.result.objectStoreNames.contains(STORE))req.result.createObjectStore(STORE)};
+      req.onsuccess=()=>resolve(req.result);
+      req.onerror=()=>reject(req.error||new Error('No se pudo abrir el almacenamiento'));
+    });
+  }
+  async function operate(type,fn){
+    const db=await open();
+    try{return await new Promise((resolve,reject)=>{
+      const tx=db.transaction(STORE,type),store=tx.objectStore(STORE);
+      const op=fn(store);
+      op.onsuccess=()=>resolve(op.result);
+      op.onerror=()=>reject(op.error||new Error('Error de almacenamiento'));
+      tx.onabort=()=>reject(tx.error||new Error('Operación cancelada'));
+    });}finally{db.close()}
+  }
+  window.MeteoCache={
+    async read(){
+      try{
+        const v=await operate('readonly',s=>s.get('real'));
+        return v && Array.isArray(v.readings) ? v : null;
+      }catch{return null;}
+    },
+    async write(rows){
+      if(!Array.isArray(rows))return false;
+      // Cap storage to a week. No demo data and no token are saved.
+      try{await operate('readwrite',s=>s.put({readings:rows.slice(-2100),cachedAt:Date.now()},'real'));return true;}
+      catch{return false;}
+    },
+    async clear(){try{await operate('readwrite',s=>s.delete('real'));return true;}catch{return false;}}
+  };
+})();
+
+</script>
+<script>
+(()=>{'use strict';
+ const $=id=>document.getElementById(id);
+ const num=(x,d=1)=> x===null || x===undefined || !Number.isFinite(Number(x))?'—':Number(x).toFixed(d).replace('.',',');
+ const date=(ts)=>ts?new Date(ts).toLocaleString('es-AR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}):'—';
+ const saved=(area,key)=>{try{return window[area].getItem(key)}catch{return null}};
+ const save=(area,key,value)=>{try{window[area].setItem(key,value)}catch{}};
+ const forget=(area,key)=>{try{window[area].removeItem(key)}catch{}};
+ const cfgDefault={tempLimit:35,windLimit:45,rainLimit:20};
+ function readSettings(){try{return {...cfgDefault,...JSON.parse(saved('localStorage','meteox-settings')||'{}')}}catch{return {...cfgDefault}}}
+ let settings=readSettings(), mode='demo', hours=24, key='temp_c', rows=[], token=saved('sessionStorage','meteox-token')||'', lastHealthy=null, sourceCached=false, lastPollTs=null, loadingReal=false;
+ const charts={temp_c:['Temperatura','°C','#62ded0'],humidity_pct:['Humedad','%','#7baafa'],wind_kmh:['Velocidad del viento','km/h','#ffcd86'],rain_daily_mm:['Lluvia acumulada','mm','#90a8ff']};
+ function synthetic(){
+   // Serie determinista reproducible, marcada siempre como DEMO.
+   const now=Date.now(), points=[];let rainDay=0,lastDay='';
+   for(let i=2016;i>=0;i--){const ts=now-i*300000, t=(ts/3600000), localHour=new Date(ts).getHours()+new Date(ts).getMinutes()/60; const sunlight=Math.max(0,Math.sin((localHour-6)*Math.PI/12));
+     const storm=Math.max(0, Math.sin(t*.07)*Math.sin(t*.31));
+     const today=new Date(ts).toLocaleDateString('sv-SE');if(today!==lastDay){rainDay=0;lastDay=today;} rainDay+=storm*.12;
+     const temp=17+9*Math.sin((localHour-8)*Math.PI/12)+1.2*Math.sin(t*.6);
+     points.push({ts,temp_c:+temp.toFixed(1),humidity_pct:+Math.max(20,Math.min(98,76-1.5*(temp-17)+storm*11)).toFixed(0),wind_kmh:+(7+4*Math.sin(t*.51)+storm*27).toFixed(1),gust_kmh:+(15+5*Math.sin(t*.45)+storm*40).toFixed(1),wind_dir_deg:Math.round((150+Math.sin(t*.3)*86+360)%360),rain_daily_mm:+rainDay.toFixed(1),rain_rate_mmh:+(storm*1.44).toFixed(1),pressure_hpa:+(1012+3*Math.sin(t*.09)).toFixed(1),solar_wm2:Math.round(920*sunlight),uv_index:+(9*sunlight).toFixed(1)});
+   }
+   return points.filter(x=>x.ts>=now-hours*3600000);
+ }
+ function showText(id,text){$(id).textContent=text}
+ function displayStatus(){
+   const online=navigator.onLine;
+   showText('internetText',online?'Red disponible':'Sin conexión');
+   $('internetDot').className='dot '+(online?'good':'bad');
+   const current=mode==='demo'?'Simulación':sourceCached?'Caché local':lastHealthy?'Estación conectada':'Estación sin datos';
+   showText('modeText',current);$('modeDot').className='dot '+(mode==='demo'?'':lastHealthy&&!sourceCached?'good':'bad');
+   showText('origin',mode==='demo'?'Simulador':sourceCached?'IndexedDB (guardado)':'Ecowitt API');
+   showText('footStatus',mode==='demo'?'Datos simulados · No utilizar para decisiones de seguridad':sourceCached?'Sin conexión con servidor · Mostrando último historial guardado':'Datos Ecowitt · Sujeto a disponibilidad 4G');
+   $('demoNotice').classList.toggle('hide',mode!=='demo');
+   const note=$('sourceNotice');note.hidden=mode==='demo';
+   if(mode!=='demo'){
+     const r=rows.at(-1), source=r?.source_ts ?? null;
+     const age=Date.now()-(source??r?.ts??0);
+     const stale=!r||age>15*60000;
+     let cls='warn',text='';
+     if(!r){cls='bad';text='SIN LECTURAS REALES: conectá la estación para ver datos del campo.';}
+     else if(sourceCached){cls='bad';text='DATOS GUARDADOS. No hay conexión actual con el servidor. Última medición almacenada: '+date(r.ts)+'.';}
+     else if(stale){cls='bad';text='MEDICIONES ANTIGUAS: el último dato ya supera los 15 minutos. No se confirma el clima actual.';}
+     else if(source===null){cls='warn';text='LECTURAS RECIBIDAS: Ecowitt no incluyó una hora verificable del sensor; confirmá su estado en la app oficial.';}
+     else{cls='good';text='ESTACIÓN CONECTADA: última medición del sensor '+date(source)+'.';}
+     note.className='notice status '+cls;note.textContent=text;
+   }
+ }
+ function windCard(d){const v=d?.wind_dir_deg;if(v===null||v===undefined)return '—';const card=['N','NE','E','SE','S','SO','O','NO'];return card[Math.round((Number(v)%360)/45)%8]+' · '+num(v,0)+'°'}
+ function render(){displayStatus();const r=rows.length?rows[rows.length-1]:null; const stale=mode==='real' && (!r || sourceCached || Date.now()-(r.source_ts??r.ts)>15*60000);lastHealthy=mode==='demo'||(!stale && r);
+ const fmt=(v,u,d=1)=>v===null||v===undefined?'—':num(v,d)+' <span class="unit">'+u+'</span>';
+ [['temp',r?.temp_c,'°C',1],['humidity',r?.humidity_pct,'%',0],['wind',r?.wind_kmh,'km/h',1],['rain',r?.rain_daily_mm,'mm',1],['pressure',r?.pressure_hpa,'hPa',1],['solar',r?.solar_wm2,'W/m²',0],['uv',r?.uv_index,'',1]].forEach(([id,v,u,dec])=>$(id).innerHTML=fmt(v,u,dec));
+ showText('windDetail',`Ráfaga: ${num(r?.gust_kmh)} km/h`);showText('rainDetail',`Intensidad: ${num(r?.rain_rate_mmh)} mm/h`);showText('direction',windCard(r));showText('lastUpdate',r?stale?'Datos antiguos':mode==='demo'?'Simulado':'Recibido':'Sin mediciones');showText('updated',r?date(r.ts):'—');showText('sensorTime',r?.source_ts?date(r.source_ts):'No verificable');showText('lastPoll',lastPollTs?date(lastPollTs):'—');
+ renderAlerts(r,stale);renderChart();
+ $('records').innerHTML=rows.length?[...rows].reverse().slice(0,12).map(p=>`<tr><td>${date(p.ts)}</td><td>${num(p.temp_c)}</td><td>${num(p.humidity_pct,0)}%</td><td>${num(p.wind_kmh)}</td><td>${num(p.rain_daily_mm)}</td><td>${num(p.pressure_hpa)}</td></tr>`).join(''):'<tr><td colspan="6">Todavía no hay datos reales.</td></tr>';
+ displayStatus();
+ }
+ function renderAlerts(r,stale){const a=[];
+ if(!r){a.push(['critical','No hay mediciones disponibles. Revisá la conexión y la configuración de Ecowitt.']);}
+ else if(stale){a.push(['critical',sourceCached?'Se muestran lecturas guardadas. No se conoce el clima actual.':'Los datos están desactualizados (>15 minutos). No se puede confirmar el estado meteorológico actual.']);}
+ else {if(r.temp_c!==null&&r.temp_c>settings.tempLimit)a.push(['critical',`Temperatura elevada: ${num(r.temp_c)} °C (umbral ${settings.tempLimit} °C).`]);
+ if(r.wind_kmh!==null&&r.wind_kmh>settings.windLimit)a.push(['critical',`Viento elevado: ${num(r.wind_kmh)} km/h (umbral ${settings.windLimit} km/h).`]);
+ if(r.rain_rate_mmh!==null&&r.rain_rate_mmh>settings.rainLimit)a.push(['',`Lluvia intensa: ${num(r.rain_rate_mmh)} mm/h.`]);}
+ if(!a.length)a.push(['ok','Sin umbrales superados en la última medición.']);
+ $('alerts').innerHTML=a.map(([cl,t])=>{const el=document.createElement('div');el.className='alert '+cl;el.textContent=t;return el.outerHTML}).join('');
+ }
+ function renderChart(){const canvas=$('chart'), rect=canvas.getBoundingClientRect(),ctx=canvas.getContext('2d');if(!ctx||!rect.width)return;const ratio=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(rect.width*ratio);canvas.height=Math.round(rect.height*ratio);ctx.scale(ratio,ratio);const w=rect.width,h=rect.height;
+ const series=rows.filter(r=>Number.isFinite(r[key])), startX=40, endX=w-12, top=19,bottom=h-35;
+ ctx.clearRect(0,0,w,h);const [label,unit,color]=charts[key];
+ if(series.length<2){ctx.fillStyle='#9bb4bf';ctx.font='13px sans-serif';ctx.fillText('No hay suficientes mediciones',20,h/2);showText('chartSummary','Esperando lecturas');return;}
+ const values=series.map(r=>r[key]), vmin=Math.min(...values), vmax=Math.max(...values), pad=Math.max((vmax-vmin)*.17,.3), min=vmin-pad,max=vmax+pad;
+ ctx.lineWidth=1;ctx.font='11px sans-serif';ctx.textBaseline='middle';for(let i=0;i<5;i++){const y=top+(bottom-top)*i/4;ctx.strokeStyle='#2b4657';ctx.beginPath();ctx.moveTo(startX,y);ctx.lineTo(endX,y);ctx.stroke();ctx.fillStyle='#91adba';ctx.fillText(num(max-(max-min)*i/4,0),2,y)}
+ const s=series[0].ts,e=series[series.length-1].ts;ctx.textBaseline='alphabetic';ctx.fillStyle='#91adba';ctx.fillText(date(s),startX,h-10);const edge=date(e), edgeW=ctx.measureText(edge).width;ctx.fillText(edge,Math.max(startX,endX-edgeW),h-10);
+ const coords=series.filter((_,i)=>i%Math.max(1,Math.ceil(series.length/500))===0||i===series.length-1).map(r=>({x:startX+(endX-startX)*(r.ts-s)/Math.max(1,e-s),y:bottom-(r[key]-min)/(max-min)*(bottom-top)}));
+ ctx.beginPath();coords.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.lineTo(coords[coords.length-1].x,bottom);ctx.lineTo(coords[0].x,bottom);ctx.closePath();ctx.fillStyle=color+'1d';ctx.fill();ctx.beginPath();coords.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.strokeStyle=color;ctx.lineWidth=2.5;ctx.lineJoin='round';ctx.stroke();
+ showText('chartSummary',`${label}: ${num(values.at(-1))} ${unit} · ${series.length} registros en ${hours===168?'7 días':hours+' horas'}`);
+ }
+ async function showCached(message){
+   const snapshot=await window.MeteoCache.read();
+   sourceCached=true;
+   rows=(snapshot?.readings||[]).filter(r=>r.ts>=Date.now()-hours*3600000);
+   lastPollTs=snapshot?.cachedAt??null;
+   render();
+   if(message)showMessage(message);
+ }
+ async function loadReal({refresh=false}={}){
+   if(loadingReal)return;
+   if(!token){await showCached('Ingresá la clave del panel para consultar el servidor.');return;}
+   loadingReal=true;
+   const heads={Authorization:'Bearer '+token};$('refreshBtn').disabled=true;
+   try{
+     if(refresh){const post=await fetch('/api/refresh',{method:'POST',headers:heads,cache:'no-store'});
+       const result=await post.json();if(!post.ok)throw Error(result.error||'No se pudo actualizar la estación');}
+     const [history,health]=await Promise.all([
+       fetch('/api/history?hours='+hours,{headers:heads,cache:'no-store'}),
+       fetch('/api/health',{headers:heads,cache:'no-store'})
+     ]);
+     if(!history.ok)throw Error(history.status===401?'La clave es incorrecta':`Error HTTP ${history.status}`);
+     const data=await history.json();if(!Array.isArray(data.readings))throw Error('Formato de historial no válido');
+     rows=data.readings;sourceCached=false;
+     if(health.ok){const h=await health.json();lastPollTs=h.last_poll_ts;if(h.last_error)showMessage('Diagnóstico de estación: '+h.last_error);}
+     await window.MeteoCache.write(rows);
+     render();
+   }catch(error){
+     await showCached('No se pudo consultar el servidor: '+error.message+' · Se muestran datos guardados si existen.');
+   }finally{loadingReal=false;$('refreshBtn').disabled=false;}
+ }
+ function showMessage(s){$('alertBox')?.remove();const el=document.createElement('div');el.id='alertBox';el.className='notice';el.style.borderColor='#9e6671';el.textContent=s;$('demoNotice').insertAdjacentElement('afterend',el);setTimeout(()=>el.remove(),11000)}
+ function applyMode(next){mode=next;save('localStorage','meteox-mode',next);if(next==='demo'){sourceCached=false;lastPollTs=null;rows=synthetic();render()}else sourceCached?showCached():loadReal();}
+ function openDialog(){$('mode').value=mode;$('token').value=token;for(const id of ['tempLimit','windLimit','rainLimit'])$(id).value=settings[id];$('realSettings').classList.toggle('hide',mode!=='real');$('dialog').classList.add('show');$('mode').focus()}
+ $('mode').addEventListener('change',()=> $('realSettings').classList.toggle('hide',$('mode').value!=='real'));
+ [$('settingsBtn'),$('settingsBtn2'),$('connectBtn')].forEach(b=>b.addEventListener('click',openDialog));
+ $('cancelBtn').addEventListener('click',()=>$('dialog').classList.remove('show'));
+ $('dialog').addEventListener('click',e=>{if(e.target===$('dialog'))$('dialog').classList.remove('show')});
+ $('clearCacheBtn').addEventListener('click',async()=>{await window.MeteoCache.clear();if(sourceCached){rows=[];lastPollTs=null;render()}showMessage('Historial local eliminado de este dispositivo.');});
+ $('saveBtn').addEventListener('click',()=>{
+   const next={};for(const id of ['tempLimit','windLimit','rainLimit']){const x=Number($(id).value);if(!Number.isFinite(x)||x<0||x>200){showMessage('Revisá los límites de alerta.');return;}next[id]=x;}
+   settings=next;save('localStorage','meteox-settings',JSON.stringify(settings));token=$('token').value.trim();if(token)save('sessionStorage','meteox-token',token);else forget('sessionStorage','meteox-token');
+   $('dialog').classList.remove('show');applyMode($('mode').value);
+ });
+ $('refreshBtn').addEventListener('click',()=>{if(mode==='demo'){rows=synthetic();render()}else loadReal({refresh:true})});
+ $('periods').addEventListener('click',e=>{const btn=e.target.closest('button[data-hours]');if(!btn)return;hours=Number(btn.dataset.hours);$('periods').querySelectorAll('button').forEach(b=>b.classList.toggle('active',b===btn));if(mode==='demo'){rows=synthetic();render()}else sourceCached?showCached():loadReal()});
+ $('metrics').addEventListener('click',e=>{const btn=e.target.closest('button[data-key]');if(!btn)return;key=btn.dataset.key;$('metrics').querySelectorAll('button').forEach(b=>b.classList.toggle('active',b===btn));renderChart()});
+ $('exportBtn').addEventListener('click',()=>{
+   if(!rows.length)return showMessage('Todavía no hay datos para exportar');
+   const columns=['ts','temp_c','humidity_pct','wind_kmh','gust_kmh','wind_dir_deg','rain_daily_mm','rain_rate_mmh','pressure_hpa','solar_wm2','uv_index'];
+   const csv=[columns.join(','),...rows.map(r=>columns.map(c=>c==='ts'?new Date(r.ts).toISOString():r[c]??'').join(','))].join('\r\n');
+   const obj=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}));const a=document.createElement('a');a.href=obj;a.download='meteo-x-'+(mode==='demo'?'SIMULADO-':'')+new Date().toISOString().slice(0,10)+'.csv';a.click();setTimeout(()=>URL.revokeObjectURL(obj),1000);
+ });
+ window.addEventListener('resize',()=>renderChart());window.addEventListener('online',displayStatus);window.addEventListener('offline',displayStatus);
+ applyMode(saved('localStorage','meteox-mode')==='real'?'real':'demo');
+ setInterval(()=>{if(mode==='real'&&token)loadReal();else if(mode==='demo'){rows=synthetic();render()}},300000);
+ if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
+})();
+</script>
+</body></html>
